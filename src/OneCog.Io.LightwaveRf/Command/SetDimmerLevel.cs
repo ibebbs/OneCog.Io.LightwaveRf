@@ -4,7 +4,7 @@
     {
         public SetDimmerLevel(byte level)
         {
-            String = $"p{level.ToString("x")}";
+            String = $"FdP{level.ToString("x")}";
         }
 
         public string String { get; private set; }

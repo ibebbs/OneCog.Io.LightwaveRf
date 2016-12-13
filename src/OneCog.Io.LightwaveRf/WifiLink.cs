@@ -9,6 +9,8 @@ namespace OneCog.Io.LightwaveRf
 
         Task PairAsync();
 
+        Task SendAsync(string command);
+
         ISocket Socket(uint room, uint device);
 
         IDimmer Dimmer(uint room, uint device);
@@ -47,6 +49,16 @@ namespace OneCog.Io.LightwaveRf
         public Task ConnectAsync()
         {
             return _connection.ConnectAsync();
+        }
+
+        public Task RegisterAsync()
+        {
+            return _connection.RegisterAsync();
+        }
+
+        public Task SendAsync(string command)
+        {
+            return _connection.SendAsync(command);
         }
 
         public async Task PairAsync()

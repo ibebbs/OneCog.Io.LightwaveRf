@@ -15,12 +15,14 @@ namespace OneCog.Io.LightwaveRf.WpfApp
         private int _room;
         private int _device;
         private bool _isConnected;
+        private string _command;
 
         public ShellViewModel()
         {
             _devices = new ObservableCollection<IDeviceViewModel>();
 
             ConnectCommand = new DelegateCommand(_ => !_isConnected, async _ => await Connect());
+            SendCommand = new DelegateCommand(_ => _isConnected, async _ => await Send());
             AddSocketCommand = new DelegateCommand(_ => _isConnected, _ => _devices.Add(new SocketViewModel(_wifiLink.Socket((uint)_room, (uint)_device))));
             AddDimmerCommand = new DelegateCommand(_ => _isConnected, _ => _devices.Add(new DimmerViewModel(_wifiLink.Dimmer((uint)_room, (uint)_device))));
         }
@@ -29,7 +31,13 @@ namespace OneCog.Io.LightwaveRf.WpfApp
         {
             _wifiLink = new WifiLink(_ipAddress);
             await _wifiLink.ConnectAsync();
-            await _wifiLink.PairAsync();
+            await _wifiLink.RegisterAsync();
+            IsConnected = true;
+        }
+
+        private async Task Send()
+        {
+            await _wifiLink.SendAsync(Command);
         }
 
         public IEnumerable<IDeviceViewModel> Devices
@@ -62,6 +70,7 @@ namespace OneCog.Io.LightwaveRf.WpfApp
 
                     NotifyOfPropertyChange(() => _isConnected);
                     ConnectCommand.RaiseCanExecuteChanged();
+                    SendCommand.RaiseCanExecuteChanged();
                     AddSocketCommand.RaiseCanExecuteChanged();
                     AddDimmerCommand.RaiseCanExecuteChanged();
                 }
@@ -96,8 +105,23 @@ namespace OneCog.Io.LightwaveRf.WpfApp
             }
         }
 
+        public string Command
+        {
+            get { return _command; }
+            set
+            {
+                if (value != _command)
+                {
+                    _command = value;
+
+                    NotifyOfPropertyChange(() => Command);
+                }
+            }
+        }
+
         public DelegateCommand ConnectCommand { get; private set; }
         public DelegateCommand AddSocketCommand { get; private set; }
         public DelegateCommand AddDimmerCommand { get; private set; }
+        public DelegateCommand SendCommand { get; private set; }
     }
 }

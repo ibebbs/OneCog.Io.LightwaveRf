@@ -24,7 +24,7 @@
 
         public ICommand PowerOn()
         {
-            return new Power(false);
+            return new Power(true);
         }
 
         public ICommand SetDimmerLevel(byte level)

@@ -50,6 +50,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid>
@@ -67,6 +68,16 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Command:" Margin="4" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding Command, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="4" VerticalContentAlignment="Center" />
+            <Button Grid.Column="2" Content="Send" Command="{Binding SendCommand}" Margin="4" Padding="12,4"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition />
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -75,10 +86,10 @@
             <TextBox Grid.Column="1" Text="{Binding Room, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="4" VerticalContentAlignment="Center" />
             <TextBlock Grid.Column="2" Text="Device:" Margin="4" VerticalAlignment="Center"/>
             <TextBox Grid.Column="3" Text="{Binding Device, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="4" VerticalContentAlignment="Center" />
-            <Button Grid.Column="4" Content="Add Socket" Command="{Binding ConnectCommand}" Margin="4" Padding="12,4"/>
-            <Button Grid.Column="5" Content="Add Dimmer" Command="{Binding ConnectCommand}" Margin="4" Padding="12,4"/>
+            <Button Grid.Column="4" Content="Add Socket" Command="{Binding AddSocketCommand}" Margin="4" Padding="12,4"/>
+            <Button Grid.Column="5" Content="Add Dimmer" Command="{Binding AddDimmerCommand}" Margin="4" Padding="12,4"/>
         </Grid>
-        <ItemsControl ItemsSource="{Binding Devices}"/>
+        <ItemsControl Grid.Row="3" ItemsSource="{Binding Devices}"/>
     </Grid>
 
 </Window>
