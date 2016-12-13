@@ -1,0 +1,84 @@
+<Window x:Class="OneCog.Io.LightwaveRf.WpfApp.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:OneCog.Io.LightwaveRf.WpfApp">
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type local:SocketViewModel}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="4" VerticalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Socket - Room{0}, Device{1}">
+                            <Binding Path="Room"/>
+                            <Binding Path="Device"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <Button Grid.Column="1" Content="On" Command="{Binding PowerOn}" Margin="4" Padding="12,4" />
+                <Button Grid.Column="2" Content="Off" Command="{Binding PowerOff}" Margin="4" Padding="12,4" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type local:DimmerViewModel}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="4" VerticalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Dimmer - Room{0}, Device{1}">
+                            <Binding Path="Room"/>
+                            <Binding Path="Device"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <Slider Minimum="0" Maximum="255" Value="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Delay=250}" />
+                <Button Grid.Column="2" Content="On" Command="{Binding PowerOn}" Margin="4" Padding="12,4" />
+                <Button Grid.Column="3" Content="Off" Command="{Binding PowerOff}" Margin="4" Padding="12,4" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="WifiLink IP Address:" Margin="4" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding IPAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="4" VerticalContentAlignment="Center" />
+            <Button Grid.Column="2" Content="Connect" Command="{Binding ConnectCommand}" Margin="4" Padding="12,4"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Room:" Margin="4" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="1" Text="{Binding Room, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="4" VerticalContentAlignment="Center" />
+            <TextBlock Grid.Column="2" Text="Device:" Margin="4" VerticalAlignment="Center"/>
+            <TextBox Grid.Column="3" Text="{Binding Device, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="4" VerticalContentAlignment="Center" />
+            <Button Grid.Column="4" Content="Add Socket" Command="{Binding ConnectCommand}" Margin="4" Padding="12,4"/>
+            <Button Grid.Column="5" Content="Add Dimmer" Command="{Binding ConnectCommand}" Margin="4" Padding="12,4"/>
+        </Grid>
+        <ItemsControl ItemsSource="{Binding Devices}"/>
+    </Grid>
+
+</Window>
