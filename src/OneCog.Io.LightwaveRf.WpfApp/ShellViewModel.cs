@@ -29,7 +29,7 @@ namespace OneCog.Io.LightwaveRf.WpfApp
         {
             _wifiLink = new WifiLink(_ipAddress);
             await _wifiLink.ConnectAsync();
-            //await _wifiLink.PairAsync();
+            await _wifiLink.PairAsync();
         }
 
         public IEnumerable<IDeviceViewModel> Devices
