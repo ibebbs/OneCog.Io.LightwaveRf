@@ -7,6 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneCog.Io.LightwaveRf", "On
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneCog.Io.LightwaveRf.WpfApp", "OneCog.Io.LightwaveRf.WpfApp\OneCog.Io.LightwaveRf.WpfApp.csproj", "{7F60DFFA-201A-4968-96A8-6480E1CACCE6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{10AA36B3-2DC7-4779-979C-283E66C447A7}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\build.cake = ..\build\build.cake
+		..\build\OneCog.Io.LightwaveRf.nuspec = ..\build\OneCog.Io.LightwaveRf.nuspec
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
