@@ -10,14 +10,7 @@
     <projectUrl>https://github.com/ibebbs/OneCog.Io.LightwaveRf</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A portable assembly for interacting with LightwaveRf WifiLink</description>
-    <dependencies>
-      <group targetFramework="portable45-net45+win8">
-        <dependency id="OneCog.Net" version="3.0.0.4" targetFramework="portable45-net45+win8" />
-      </group>
-
-      <group targetFramework="net45">
-        <dependency id="OneCog.Net" version="3.0.0.4" targetFramework="net45" />
-      </group>
-    </dependencies>
+    @dependencies@
   </metadata>
+  @files@
 </package>

@@ -9,7 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneCog.Io.LightwaveRf.WpfAp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{10AA36B3-2DC7-4779-979C-283E66C447A7}"
 	ProjectSection(SolutionItems) = preProject
-		..\build\build.cake = ..\build\build.cake
+		..\build.bat = ..\build.bat
+		..\build\build.fsx = ..\build\build.fsx
 		..\build\OneCog.Io.LightwaveRf.nuspec = ..\build\OneCog.Io.LightwaveRf.nuspec
 	EndProjectSection
 EndProject
